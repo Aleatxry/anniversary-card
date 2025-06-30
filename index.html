@@ -1,38 +1,209 @@
-<html>
-  <head>
-    <title>Happy 4th Anniversary</title>
-    <link rel="shortcut icon" href="./andy.jpg" type="image/x-icon">
-    <link rel="stylesheet" href="./style.css">
-    <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div class="container">
-      <div class="table">
-        <div class="card card-back">
-          <p>
-            You are...<br>
-            <br>
-            the apple of my eye<br>
-            the lithium to my 3,520 mAh battery<br>
-            the Pikmin to my Captain Olimar<br>
-            the 808 to my SoundCloud rap<br>
-            the acid and heat to my salt and fat<br>
-            the hair gel to my Hasan Minaj<br>
-            the hot water to my tea leaves<br>
-            the lotion on my new tattoo<br>
-            the broth to my hot pot<br>
-            the hash function to my hash table<br>
-            and the subway in my city<br>
-            <br>
-            I love you! Happy Anniversary!
-          </p>
-        </div>
-        <div class="card card-front">
-          <img src="./us.jpg" alt="us lookin good asf">
-          <h1>Happy 4th Anniversary, Enyu!</h1>
-        </div>
-      </div>
-    </div>
-    
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy 4th Anniversary</title>
+  <link href="https://fonts.googleapis.com/css?family=Sacramento&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #F7F7F7;
+      font-family: 'Sacramento', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .book {
+      position: relative;
+      width: 450px;
+      height: 700px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      border-radius: 12px;
+      background: white;
+    }
+
+    .page {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .page.active {
+      opacity: 1;
+      z-index: 2;
+    }
+
+    .page img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .page p {
+      font-size: 20px;
+      line-height: 1.6;
+      font-family: cursive;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 25px;
+      margin: 0 10px;
+      border: none;
+      background: #ff6f91;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #ff355e;
+    }
+
+    /* Gallery page */
+    .gallery {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+
+    .gallery img {
+      max-width: 100%;
+      max-height: 600px;
+      margin-top: 40px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 48px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #ff6f91;
+      padding: 10px;
+      z-index: 10;
+      user-select: none;
+    }
+
+    .arrow.left {
+      left: 10px;
+    }
+
+    .arrow.right {
+      right: 10px;
+    }
+
+    .arrow:hover {
+      color: #ff355e;
+    }
+  </style>
+</head>
+<body>
+
+<div class="book" id="book">
+  <div class="page active">
+    <img src="./us1.jpg" alt="us lookin good asf">
+    <h1 style="text-align: center;">Happy 1st Monthiversy, Cream!</h1>
+  </div>
+
+  <div class="page">
+    <p>
+      Dear My love.<br><br>
+      Happy our 1st Monthiversy sry that i didn't told you faster  <br>
+      but i just want to say that i love you very much <br>
+      you make me feel like i found the girl that i look for my entire life <br>
+      for this one month you make me feel so happy very much <br>
+      i don't know did you and at me or not that i didn't congrat you faster <br>
+      but  one thing that i want to tell you is... <br><br>
+      I love you always. ❤️
+    </p>
+  </div>
+
+  <div class="page">
+  <div class="gallery">
+    <h2 class="gallery-title">OUR MEMORIES</h2>
+    <button class="arrow left" onclick="prevImage()">❮</button>
+    <img id="galleryImage" src="./us1.jpg" alt="รูปความทรงจำ">
+    <button class="arrow right" onclick="nextImage()">❯</button>
+    <p class="gallery-footer">i love you</p>
+  </div>
+</div>
+
+</div>
+
+<div class="buttons">
+  <button onclick="prevPage()">ย้อนกลับ</button>
+  <button onclick="nextPage()">ถัดไป</button>
+</div>
+
+<script>
+  const pages = document.querySelectorAll('.page');
+  let currentPage = 0;
+
+  function showPage(index) {
+    pages.forEach((page, i) => {
+      page.classList.toggle('active', i === index);
+    });
+  }
+
+  function nextPage() {
+    if (currentPage < pages.length - 1) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  }
+
+  function prevPage() {
+    if (currentPage > 0) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  }
+
+  // Gallery image logic
+  const galleryImages = ['./us1.jpg', './us2.jpg', './us3.jpg', './us7.jpg', './us4.jpg', './us5.jpg', './us6.jpg', './you1.jpg', './you1.jpg', './you1.jpg', './you2.jpg', './you3.jpg', './you4.jpg', './you5.jpg', './you6.jpg', './you7.jpg', './you8.jpg', './you9.jpg', './you10.jpg', './you11.jpg', './you12.jpg', './you13.jpg', './you14.jpg' ];
+  let currentImage = 0;
+
+  function showImage(index) {
+    const img = document.getElementById('galleryImage');
+    img.src = galleryImages[index];
+  }
+
+  function nextImage() {
+    currentImage = (currentImage + 1) % galleryImages.length;
+    showImage(currentImage);
+  }
+
+  function prevImage() {
+    currentImage = (currentImage - 1 + galleryImages.length) % galleryImages.length;
+    showImage(currentImage);
+  }
+</script>
+
+</body>
 </html>
